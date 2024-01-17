@@ -3,7 +3,6 @@
 **Things**
 - Every device is controlled by a separate WoT thing, featuring its own TD
 - Lamp Thing
-    - an example is provided on the repo – Activity-02
 - Presence Detection Sensor Thing
 - Luminosity Level Sensor Thing
 
