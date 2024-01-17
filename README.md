@@ -9,7 +9,7 @@
 
 **Smart-Room Agent**
 
-implementing the smart behaviour in Activity #01:
+implementing the smart behaviour in [Activity #01](https://github.com/yan-elena/pc-2022/tree/master/Activity-02):
 - the lamp should be automatically turned on and off depending on the presence of
 users in the room and the luminosity level
 - if no one is in the room, the light should be off
