@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="http://moise.sourceforge.net/xml/os.xsl" type="text/xsl" ?>
+
+<organisational-specification
+    id="smart_building_with_dt"
+    os-version="0.8"
+
+    xmlns='http://moise.sourceforge.net/os'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://moise.sourceforge.net/os
+                        http://moise.sourceforge.net/xml/os.xsd' >
+
+<structural-specification>
+
+<role-definitions>
+    <role id="smart_room_controller" />
+    <role id="thing" />
+        <role id="lamp"> <extends role="thing"/> </role>
+        <role id="light"> <extends role="thing"/> </role>
+        <role id="pres_detect"> <extends role="thing"/> </role>
+</role-definitions>
+
+<group-specification id="room_group">
+    <roles>
+        <role id="smart_room_controller" min="1" max="1"/>
+        <role id="lamp" min="1" max="1"/>
+        <role id="light" min="1" max="1"/>
+        <role id="pres_detect" min="1" max="1"/>
+    </roles>
+
+    <links>
+       <link from="smart_room_controller" to="thing" type="authority"     scope="intra-group" bi-dir="false"/>
+       <link from="thing" to="smart_room_controller" type="communication" scope="intra-group" bi-dir="false"/>
+    </links>
+</group-specification>
+</structural-specification>
+
+<functional-specification>
+    <scheme id="controlRoom">
+        <goal id="control">
+            <plan operator="sequence">
+                <goal id="start"/>
+                <goal id="connectArtifact"/>
+                <goal id="sensingState"/>
+            </plan>
+        </goal>
+
+        <mission id="mSmartRoom" min="1" max="1">
+            <goal id="start"/>
+        </mission>
+        <mission id="mThing" min="1" max="3">
+            <goal id="start"/>
+            <goal id="connectArtifact"/>
+            <goal id="sensingState"/>
+        </mission>
+    </scheme>
+</functional-specification>
+
+<normative-specification>
+    <!-- the norms of the application -->
+    <norm id="norm1" type="obligation" role="smart_room_controller" mission="mSmartRoom"/>    
+    <norm id="norm2" type="obligation" role="thing" mission="mThing"/>
+</normative-specification>
+
+</organisational-specification>
